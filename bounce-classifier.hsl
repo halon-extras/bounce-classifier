@@ -19,7 +19,7 @@ function bounce_classifier_internal($normalized, $message, $url, $options)
         return;
 }
 
-function bounce_classifier($message, $url = "http://127.0.0.1:8000/v1/bnac", $options = [])
+function bounce_classifier($message, $url = "http://127.0.0.1:8000/v1/bnac/single", $options = [])
 {
         return cache [
                 "argv_filter" => [1], // cache on the normalized version
