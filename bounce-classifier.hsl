@@ -22,6 +22,7 @@ function bounce_classifier($normalized, $message, $url, $options)
 function bounce_classifier_export($message, $url = "http://127.0.0.1:8000/v1/bnac/single", $options = [])
 {
         return cache [
+		"namespace" => "extras://bounce-classifier",
                 "argv_filter" => [1], // cache on the normalized version
                 "update_function" => function($old, $new) {
                         return $new ? $new : $old;
