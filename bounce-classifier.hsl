@@ -27,7 +27,7 @@ function bounce_classifier($message, $url = "http://127.0.0.1:8000/v1/bnac", $op
                         return $new ? $new : $old;
                 },
                 "ttl_function" => function($new) closure ($options) {
-                        return $new ? ($options["ttl_good"] ?? none) : ($options["ttl_bad"] ?? 30);
+                        return $new ? ($options["cache_ttl_good"] ?? none) : ($options["cache_ttl_bad"] ?? 30);
                 },
                 "size" => $options["cache_size"] ?? (64 * 1024),
         ] bounce_classifier_internal(bounce_normalizer($message), $message, $url, $options);
