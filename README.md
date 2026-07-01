@@ -49,3 +49,16 @@ import { bounce_classifier } from "extras://bounce-classifier";
 
 echo bounce_classifier("451 4.7.1 <bla.candy@fish.sk>: Recipient address rejected: Greylisting in effect, please come back later");
 ```
+
+## Operation
+
+You can inspect the efficiency of the bounce-classifier cache using this command; ``halonctl hsl cache list``.
+
+```
+$ halonctl hsl cache list
+┌────────────────────────────┬───────────────────┬──────────┬──────┬──────┬────────┬────────┬───────┬──────────┐
+│ Namespace                  │ Function          │ Max size │ Size │ Hits │ Misses │ Evicts │ Waits │ Hit rate │
+├────────────────────────────┼───────────────────┼──────────┼──────┼──────┼────────┼────────┼───────┼──────────┤
+│ extras://bounce-classifier │ bounce_classifier │    65536 │   51 │ 3802 │    717 │      0 │   433 │   84.134 │
+└────────────────────────────┴───────────────────┴──────────┴──────┴──────┴────────┴────────┴───────┴──────────┘
+```
