@@ -1,6 +1,6 @@
 # Halon Bounce Classifier client
 
-This plugin will query the [bounce-classifier](https://docs.halon.io/bounce-classifier/) service. It uses a internal cache of the normalized message.
+This plugin will query the [bounce-classifier](https://docs.halon.io/bounce-classifier/) service. It uses a internal cache of the normalized message. You can inspect the efficiency of the bounce-classifier cache using this command; ``halonctl hsl cache list | grep bounce_classifier``.
 
 ## Installation
 
