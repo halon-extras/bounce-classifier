@@ -1,0 +1,34 @@
+import { bounce_normalizer } from "extras://bounce-normalizer";
+import { http_background } from "extras://http-background";
+
+function bounce_classifier_internal($normalized, $message, $url, $options)
+{
+        if ($options["http_background"])
+                $res = http_background($options["http_background"], $url,
+                        ["headers" => ["Content-Type: application/json", "Accept: application/json"], "extended_result" => true, ...($options["http-options"] ?? [])],
+                        json_encode(["message" => $message])
+                );
+        else
+                $res = http($url,
+                        ["headers" => ["Content-Type: application/json", "Accept: application/json"], "extended_result" => true, ...($options["http-options"] ?? [])],
+                        [],
+                        json_encode(["message" => $message])
+                );
+        if ($res["content"])
+                return json_decode($res["content"]);
+        return;
+}
+
+function bounce_classifier($message, $url = "http://127.0.0.1:8000/v1/bnac", $options = [])
+{
+        return cache [
+                "argv_filter" => [1], // cache on the normalized version
+                "update_function" => function($old, $new) {
+                        return $new ? $new : $old;
+                },
+                "ttl_function" => function($new) closure ($options) {
+                        return $new ? ($options["ttl_good"] ?? none) : ($options["ttl_bad"] ?? 30);
+                },
+                "size" => $options["cache_size"] ?? (64 * 1024),
+        ] bounce_classifier_internal(bounce_normalizer($message), $message, $url, $options);
+}
