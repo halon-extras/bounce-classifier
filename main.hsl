@@ -1,1 +1,1 @@
-import { bounce_classifier } from "./bounce-classifier.hsl";
+import { bounce_classifier_export as bounce_classifier } from "./bounce-classifier.hsl";

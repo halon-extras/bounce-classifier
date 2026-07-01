@@ -1,7 +1,7 @@
 import { bounce_normalizer } from "extras://bounce-normalizer";
 import { http_background } from "extras://http-background";
 
-function bounce_classifier_internal($normalized, $message, $url, $options)
+function bounce_classifier($normalized, $message, $url, $options)
 {
         if ($options["http_background"])
                 $res = http_background($options["http_background"], $url,
@@ -19,7 +19,7 @@ function bounce_classifier_internal($normalized, $message, $url, $options)
         return;
 }
 
-function bounce_classifier($message, $url = "http://127.0.0.1:8000/v1/bnac/single", $options = [])
+function bounce_classifier_export($message, $url = "http://127.0.0.1:8000/v1/bnac/single", $options = [])
 {
         return cache [
                 "argv_filter" => [1], // cache on the normalized version
@@ -30,5 +30,5 @@ function bounce_classifier($message, $url = "http://127.0.0.1:8000/v1/bnac/singl
                         return $new ? ($options["cache_ttl_good"] ?? none) : ($options["cache_ttl_bad"] ?? 30);
                 },
                 "size" => $options["cache_size"] ?? (64 * 1024),
-        ] bounce_classifier_internal(bounce_normalizer($message), $message, $url, $options);
+        ] bounce_classifier(bounce_normalizer($message), $message, $url, $options);
 }
