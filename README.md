@@ -29,7 +29,7 @@ Classify a bounce message.
 **Params**
 
 - message `string` - The bounce message to classify
-- url `string` - The URL of the bounce classfier endpoint
+- url `string` - The URL of the bounce classfier endpoint. The default is ``http://127.0.0.1:8000/v1/bnac/single``
 - options `array` - Options array
 
 The following options are available in the **options** array.
