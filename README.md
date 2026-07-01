@@ -1,6 +1,6 @@
-# Bounce Classifier Client
+# Halon Bounce Classifier Client
 
-This plugin will query the [bounce-classifier](https://docs.halon.io/bounce-classifier/) service.
+This plugin will query the [bounce-classifier](https://docs.halon.io/bounce-classifier/) service. It uses a internal cache of the normalized message.
 
 ## Installation
 
